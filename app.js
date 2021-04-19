@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
+const mongoose = require('mongoose')
 
 require('dotenv/config')
-
 const api = process.env.API_URL
 
 // Middleware
@@ -24,6 +24,18 @@ app.post(`${api}/products`, (req, res) => {
   console.log(newProduct);
   res.send(newProduct)
 })
+
+mongoose.connect(process.env.CONNECTION_STRING, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: 'eshop-database'
+  })
+  .then(() => {
+    console.log('Database Connection is ready...')
+  }).catch(() => {
+    console.log(err)
+  })
+
 app.listen(3000, () => {
   console.log(`Server is running http://localhost:3000`)
 })
