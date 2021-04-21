@@ -30,6 +30,7 @@ app.use(`${api}/orders`, ordersRoutes)
 mongoose.connect(process.env.CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
     dbName: 'eshop-database'
   })
   .then(() => {
