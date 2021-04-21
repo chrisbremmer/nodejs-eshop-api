@@ -1,7 +1,7 @@
 const {
   Order
-} = require('../models/order')
-const express = require('express')
+} = require('../models/order');
+const express = require('express');
 const router = express.Router();
 
 router.get(`/`, async (req, res) => {
@@ -12,7 +12,7 @@ router.get(`/`, async (req, res) => {
       success: false
     })
   }
-  res.send(orderList)
+  res.send(orderList);
 })
 
-module.exports = router
+module.exports = router;
