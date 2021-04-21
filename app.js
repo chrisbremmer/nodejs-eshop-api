@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv/config')
 const authJwt = require('./helpers/jwt')
+const errorHandler = require('./helpers/error-handler')
 
 app.use(cors())
 app.options('*', cors())
@@ -13,12 +14,16 @@ app.options('*', cors())
 app.use(express.json());
 app.use(morgan('tiny'))
 app.use(authJwt())
+app.use(errorHandler)
 
 // Routes
 const categoriesRoutes = require('./routes/categories')
 const productsRoutes = require('./routes/products')
 const userRoutes = require('./routes/users')
 const ordersRoutes = require('./routes/orders')
+const {
+  setRandomFallback
+} = require('bcryptjs')
 
 const api = process.env.API_URL
 
